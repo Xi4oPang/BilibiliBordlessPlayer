@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "Bilibili Player",
+  "version": "1.0",
+  "description": "打开B站视频并以纯净窗口进行播放，同时支持修改窗口标题",
+  "permissions": ["scripting", "tabs", "clipboardRead"],
+  "host_permissions": ["*://*.bilibili.com/*"],
+  "action": {
+    "default_popup": "input.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.bilibili.com/video/*"
+      ],
+      "js": ["clean.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["colors.svg"],
+      "matches": ["*://*.bilibili.com/*"]
+    }
+  ]
+}
